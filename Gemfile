@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -41,5 +41,38 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  
+  ### ブラウザからメールの受信を確認できるようにする
+  gem 'letter_opener'
+  ### エラーの可視化
+  gem 'better_errors'
+  ### ステップ実行などのデバッグ
+  gem 'pry-byebug'
+  ### 環境変数の設定
+  gem 'dotenv-rails'
 end
 
+###
+gem 'pry-rails', '0.3.4'
+### bootstrap
+gem 'twitter-bootstrap-rails'
+### 
+gem 'jquery-turbolinks'
+### Heroku上でのロギングに必要
+gem 'rails_12factor', group: :production
+### ログイン機能
+gem 'devise'
+### ダミーデータの作成
+gem 'faker'
+### 管理画面作成
+gem 'rails_admin'
+### 権限管理
+gem 'cancan'
+### oauth認証
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+### 画像アップローダー
+gem 'carrierwave'
+### 画像のリサイズなど
+gem 'rmagick'

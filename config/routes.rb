@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   get 'users/mine' => 'users#show'
+  resources :articles
   root 'top#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

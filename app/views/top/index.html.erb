@@ -1,2 +1,62 @@
-<h1>Top#index</h1>
-<p>Find me in app/views/top/index.html.erb</p>
+<div class="col-md-offset-3 col-md-6">
+
+  <div class="row" style="border: solid 1px #efefef; padding:15px; margin-bottom: 15px">
+    <%= form_for Article.new do |f| %>
+      <div class="form-group">
+        <%= f.text_field :title, placeholder: "タイトル", class: "form-control"%>
+      </div>
+      <div class="form-group">
+        <%= f.text_area :content, placeholder: "コメント", class: "form-control"%>
+      </div>
+      <div class="form-group">
+        <%= f.file_field :picture %>
+      </div>
+      <%= f.submit "投稿", class: "btn btn-primary pull-right"%>
+    <% end %>
+  </div>
+
+  <% Article.all.order('updated_at DESC').each do |article| %>
+    <div class="row" style="border: solid 1px #efefef; padding:15px; margin-bottom: 15px">
+      <p><%= article.user.name %></p>
+      <p><%= article.title %></p>
+      <p><%= image_tag article.picture, alt: article.title, style: 'width: 100%' %></p>
+      <%= simple_format article.content %>
+      <%= form_for article, url: article_path(article), method: :delete  do |f| %>
+        <%= f.submit '削除', class: 'btn btn-danger pull-right', data: { confirm: '本当に削除しますか？' }%>
+      <% end %>
+      <button class="btn btn-primary pull-right" onclick="openEditModal('<%= article.title %>', '<%= article.content%>', '<%= article_path(article) %>')">編集</button>
+      <%#= form_for article, url: edit_article_path(article) do |f| %>
+        <%#= f.submit '編集', class: 'btn btn-primary pull-right'%>
+      <%# end %>
+    </div>
+  <% end %>
+
+  <div class="modal fade" id="modal-edit-article" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <%= form_tag article_path(:json), method: :patch, remote: true, authenticity_token: true do %>
+                <div class="form-group">
+                  <%= text_field_tag 'article[title]', nil, placeholder: 'タイトル', class: 'form-control', id: 'edit-title' %>
+                </div>
+                <div class="form-group">
+                  <%= text_area_tag 'article[content]', nil, placeholder: 'コメント', class: 'form-control', id: 'edit-content' %>
+                </div>
+                <%=  file_field_tag 'article[picture]' %>
+    
+                <%= submit_tag '編集', class: "btn btn-primary pull-right" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
+

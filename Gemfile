@@ -76,3 +76,5 @@ gem 'omniauth-facebook'
 gem 'carrierwave'
 ### 画像のリサイズなど
 gem 'rmagick'
+
+gem 'remotipart'

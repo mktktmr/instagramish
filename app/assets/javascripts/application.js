@@ -15,3 +15,14 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+(function(){
+  document.addEventListener("turbolinks:load", function() {
+  
+      var canvas = document.getElementById('log-instagramish');
+      var ctx = canvas.getContext('2d');
+
+      ctx.font = '34px cursive';
+      ctx.fillText('Instagramish', 0, 50);
+  });
+})();

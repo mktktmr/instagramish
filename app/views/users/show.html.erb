@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <div class="col-md-4">
+      <img src ="<%= asset_path 'silhouette-human-256.png'%>" style="width: 150px; height: 150px; border-radius:75px; border: solid 1px #000000;" >
+    </div>
+    <div class="col-md-8">
+      <p><%= @user.name %></p>
+      <p><%= @user.email %></p>
+      <ul style="display: flex; list-style: none">
+        <li style="margin-right: 10px">
+          <span>投稿</span>
+          <span><%= User.all.count %></span>
+          <span>件</span>
+        </li>
+        <li style="margin-right: 10px">hoge</li>
+      </ul>
+    </div>
+    <%= form_for current_user, url: destroy_user_session_path, method: :delete, class: 'pull-right' do |f| %>
+      <%= f.submit "ログアウト", class: "btn btn-danger pull-right" %>
+    <% end %>
+    <%= form_for current_user, url: edit_user_registration_path, method: :get do |f| %>
+      <%= f.submit "編集", class: "btn btn-default pull-right" %>
+    <% end %>
+  </div>
+</div>

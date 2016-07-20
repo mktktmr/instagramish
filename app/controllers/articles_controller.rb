@@ -2,7 +2,6 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:destroy, :update]
 
   def create
-    binding.pry
     article = Article.new(article_params)
     article.user_id = current_user.id
     article.save

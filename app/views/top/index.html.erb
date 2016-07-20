@@ -6,7 +6,17 @@
 <% end %>
 <div class="col-md-offset-3 col-md-6">
   <div class="row" style="border: solid 1px #efefef; padding:15px; margin-bottom: 15px">
-    <%= form_for Article.new do |f| %>
+    <% if @article.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @article.errors.count %>件のエラーがあります。</h2>
+        <ul>
+          <% @article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= form_for @article do |f| %>
       <div class="form-group">
         <%= f.text_field :title, placeholder: "タイトル", class: "form-control"%>
       </div>
@@ -41,11 +51,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Modal title</h4>
+          <h4 class="modal-title">編集</h4>
         </div>
         <div class="modal-body">
           <div class="container-fluid">
             <div class="row">
+              <div id="m_edit_error_explanation"></div>
               <%= form_tag article_path(:json), method: :patch, remote: true, authenticity_token: true do %>
                 <div class="form-group">
                  <%= text_field_tag 'article[title]', nil, placeholder: 'タイトル', class: 'form-control', id: 'edit-title' %>
@@ -55,7 +66,7 @@
                 </div>
                 <%=  file_field_tag 'article[picture]' %>
     
-                <%= submit_tag '編集', class: "btn btn-primary pull-right" %>
+                <%= submit_tag '更新', class: "btn btn-primary pull-right" %>
               <% end %>
             </div>
           </div>

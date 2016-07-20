@@ -1,5 +1,8 @@
 class Article < ActiveRecord::Base
   belongs_to :user
+  
+  validates :title, presence: true
+  validates :picture, presence: true
 
   mount_uploader :picture, PictureUploader
 end

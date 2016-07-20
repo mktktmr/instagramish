@@ -17,7 +17,7 @@
 
   <% Article.all.order('updated_at DESC').each do |article| %>
     <div class="row" style="border: solid 1px #efefef; padding:15px; margin-bottom: 15px">
-      <p><%= article.user.name %></p>
+      <p><%= profile_img article.user, style: "width: 30px; height: 30px; border-radius:75px; margin-right: 10px" %><%= article.user.name %></p>
       <p><%= article.title %></p>
       <p><%= image_tag article.picture, alt: article.title, style: 'width: 100%' %></p>
       <%= simple_format article.content %>
@@ -43,7 +43,7 @@
             <div class="row">
               <%= form_tag article_path(:json), method: :patch, remote: true, authenticity_token: true do %>
                 <div class="form-group">
-                  <%= text_field_tag 'article[title]', nil, placeholder: 'タイトル', class: 'form-control', id: 'edit-title' %>
+                 <%= text_field_tag 'article[title]', nil, placeholder: 'タイトル', class: 'form-control', id: 'edit-title' %>
                 </div>
                 <div class="form-group">
                   <%= text_area_tag 'article[content]', nil, placeholder: 'コメント', class: 'form-control', id: 'edit-content' %>

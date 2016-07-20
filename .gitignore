@@ -43,3 +43,6 @@ bower.json
 
 ### system infomation for OS X 
 .DS_Store
+
+### CarrierWave
+public/uploads

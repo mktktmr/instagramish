@@ -1,25 +1,28 @@
 <div class="row">
-  <div class="col-md-offset-2 col-md-8">
-    <div class="col-md-4">
-      <img src ="<%= asset_path 'silhouette-human-256.png'%>" style="width: 150px; height: 150px; border-radius:75px; border: solid 1px #000000;" >
+  <div class="col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
+    <div class="col-md-4 col-xs-4">
+      <%= profile_img current_user, style: "width: 150px; height: 150px; border-radius:75px; border: solid 1px #000000;" %>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 col-xs-8">
       <p><%= @user.name %></p>
       <p><%= @user.email %></p>
       <ul style="display: flex; list-style: none">
         <li style="margin-right: 10px">
           <span>投稿</span>
-          <span><%= User.all.count %></span>
+          <span><%= @user.articles.count %></span>
           <span>件</span>
         </li>
-        <li style="margin-right: 10px">hoge</li>
       </ul>
     </div>
-    <%= form_for current_user, url: destroy_user_session_path, method: :delete, class: 'pull-right' do |f| %>
-      <%= f.submit "ログアウト", class: "btn btn-danger pull-right" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-offset-4 col-md-4 col-xs-offset-4 col-xs-4">
+    <%= form_for current_user, url: destroy_user_session_path, method: :delete, html: { class: 'form-group' } do |f| %>
+      <%= f.submit "ログアウト", class: "btn btn-danger btn-block" %>
     <% end %>
     <%= form_for current_user, url: edit_user_registration_path, method: :get do |f| %>
-      <%= f.submit "編集", class: "btn btn-default pull-right" %>
+      <%= f.submit "編集", class: "btn btn-default btn-block" %>
     <% end %>
   </div>
 </div>

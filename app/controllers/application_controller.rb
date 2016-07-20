@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  PERMISSIBLE_ATTRIBUTES = [:name]
+  PERMISSIBLE_ATTRIBUTES = [:name, :avatar, :avatar_cache]
+
 
   private
 

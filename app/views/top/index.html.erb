@@ -1,5 +1,10 @@
+<% if notice %>
+  <p class="alert alert-success text-center"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger text-center"><%= alert %></p>
+<% end %>
 <div class="col-md-offset-3 col-md-6">
-
   <div class="row" style="border: solid 1px #efefef; padding:15px; margin-bottom: 15px">
     <%= form_for Article.new do |f| %>
       <div class="form-group">
@@ -24,7 +29,7 @@
       <%= form_for article, url: article_path(article), method: :delete  do |f| %>
         <%= f.submit '削除', class: 'btn btn-danger pull-right', data: { confirm: '本当に削除しますか？' }%>
       <% end %>
-      <button class="btn btn-primary pull-right" onclick="openEditModal('<%= article.title %>', '<%= article.content%>', '<%= article_path(article) %>')">編集</button>
+      <button class="btn btn-primary pull-right" onclick="openEditModal('<%= article.title %>', `<%= article.content%>`, '<%= article_path(article) %>')">編集</button>
       <%#= form_for article, url: edit_article_path(article) do |f| %>
         <%#= f.submit '編集', class: 'btn btn-primary pull-right'%>
       <%# end %>
